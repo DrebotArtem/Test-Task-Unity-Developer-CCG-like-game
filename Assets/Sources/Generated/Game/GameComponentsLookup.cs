@@ -9,32 +9,41 @@
 public static class GameComponentsLookup {
 
     public const int Asset = 0;
-    public const int Destroyed = 1;
-    public const int GameDestroyedListener = 2;
-    public const int LoadAsync = 3;
-    public const int NameID = 4;
-    public const int TestObject = 5;
-    public const int View = 6;
+    public const int Card = 1;
+    public const int CardTexture2D = 2;
+    public const int CardTexture2DListener = 3;
+    public const int Destroyed = 4;
+    public const int GameDestroyedListener = 5;
+    public const int LoadAsync = 6;
+    public const int NameID = 7;
+    public const int StatusLoadingCardTexture2D = 8;
+    public const int View = 9;
 
-    public const int TotalComponents = 7;
+    public const int TotalComponents = 10;
 
     public static readonly string[] componentNames = {
         "Asset",
+        "Card",
+        "CardTexture2D",
+        "CardTexture2DListener",
         "Destroyed",
         "GameDestroyedListener",
         "LoadAsync",
         "NameID",
-        "TestObject",
+        "StatusLoadingCardTexture2D",
         "View"
     };
 
     public static readonly System.Type[] componentTypes = {
         typeof(AssetComponent),
+        typeof(CardComponent),
+        typeof(CardTexture2DComponent),
+        typeof(CardTexture2DListenerComponent),
         typeof(DestroyedComponent),
         typeof(GameDestroyedListenerComponent),
         typeof(LoadAsyncComponent),
         typeof(NameIDComponent),
-        typeof(TestObjectComponent),
+        typeof(StatusLoadingCardTexture2DComponent),
         typeof(ViewComponent)
     };
 }

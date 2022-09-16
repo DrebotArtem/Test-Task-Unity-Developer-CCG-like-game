@@ -1,3 +1,4 @@
+using DrebotGS.Mono;
 using DrebotGS.Systems;
 using Zenject;
 
@@ -5,9 +6,8 @@ namespace DrebotGS.Core
 {
   public class NewGameInstaller : MonoInstaller
   {
-    public override void InstallBindings()
-    {
-    }
+    public LocationGame LocationGame;
+
     private InjectableFeature _gameSystems;
 
     //Injects
@@ -26,6 +26,11 @@ namespace DrebotGS.Core
       _loadingSceneHelper = loadingSceneHelper;
     }
 
+    public override void InstallBindings()
+    {
+      _diContainer.BindInterfacesAndSelfTo<LocationGame>().FromInstance(LocationGame).AsSingle();
+    }
+
     public override void Start()
     {
     }
@@ -34,11 +39,12 @@ namespace DrebotGS.Core
     {
       CreateGameSystems();
     }
+
     private void OnDestroy()
     {
       _gameSystems.TearDown();
-      _gameSystems.StepExecute();
-      _gameSystems.StepCleanup();
+      _gameSystems.Execute();
+      _gameSystems.Cleanup();
       _gameSystems.DeactivateReactiveSystems();
 
       _contexts.game.DestroyAllEntities();
@@ -56,9 +62,10 @@ namespace DrebotGS.Core
 
       void CreateLoadSystems(Contexts contexts)
       {
-        _gameSystems.Add(new CreateTestObjectsSystem(contexts));
+        _gameSystems.Add(new CreateCardSystem(contexts));
 
-        _gameSystems.Add(new LoadAssetSystem(contexts));
+        _gameSystems.Add(new LoadCardAssetSystem(contexts));
+        _gameSystems.Add(new LoadCardTextureFromURLSystem(contexts));
 
         // TearDown
         _gameSystems.Add(new ReleaseAddressablesAssetsSystem(contexts));
