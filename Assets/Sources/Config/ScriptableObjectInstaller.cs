@@ -17,6 +17,7 @@ namespace DrebotGS.Config
     [Header("Game data configuration")]
     public GameConfig GameConfig;
     public PlayerConfig PlayerConfig;
+    public CardConfig CardConfig;
 
     public override void InstallBindings()
     {
@@ -24,6 +25,7 @@ namespace DrebotGS.Config
       Container.BindInterfacesAndSelfTo<GameAssetsCatalogue>().FromInstance(AssetsCatalogue).AsSingle();
       Container.BindInterfacesAndSelfTo<GameConfig>().FromInstance(GameConfig).AsSingle();
       Container.BindInterfacesAndSelfTo<PlayerConfig>().FromInstance(PlayerConfig).AsSingle();
+      Container.BindInterfacesAndSelfTo<CardConfig>().FromInstance(CardConfig).AsSingle();
     }
   }
 }

@@ -10,12 +10,12 @@ namespace DrebotGS.Systems
 {
   public class LoadCardTextureFromURLSystem : ReactiveSystem<GameEntity>
   {
-    private GameConfig _gameConfig;
+    private CardConfig _cardConfig;
 
     [Inject]
-    public void Inject(GameConfig gameConfig)
+    public void Inject(CardConfig cardConfig)
     {
-      _gameConfig = gameConfig;
+      _cardConfig = cardConfig;
     }
 
     public LoadCardTextureFromURLSystem(Contexts contexts) : base(contexts.game)
@@ -39,7 +39,8 @@ namespace DrebotGS.Systems
     private async void AddCardTexture(GameEntity entity)
     {
       entity.AddStatusLoadingCardTexture2D(StatusLoading.Loading);
-      var texture = await LoadTextureFromURL(_gameConfig.CardImageURL);
+      var texture = await LoadTextureFromURL(_cardConfig.CardImageURL);
+      if (!entity.isEnabled) return;
       if (texture == null)
       {
         entity.ReplaceStatusLoadingCardTexture2D(StatusLoading.FailLoaded);

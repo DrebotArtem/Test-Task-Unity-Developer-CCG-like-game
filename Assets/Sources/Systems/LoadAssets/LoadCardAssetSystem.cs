@@ -49,8 +49,8 @@ namespace DrebotGS.Systems
         return;
 
       AddView(entity, viewGO);
-      SetParent(viewGO);
-      ResetLocalPositionAndRotation(viewGO);
+      SetParentHand(viewGO);
+      SetPoristionAndRotationDeck(viewGO);
     }
 
     private void AddView(GameEntity entity, Transform viewGO)
@@ -60,15 +60,14 @@ namespace DrebotGS.Systems
       entity.AddView(view);
   }
 
-    private void SetParent(Transform viewGO)
+    private void SetParentHand(Transform viewGO)
     {
       viewGO.transform.SetParent(_locationGame.playerHand);
     }
-
-    private void ResetLocalPositionAndRotation(Transform viewGO)
+    private void SetPoristionAndRotationDeck(Transform viewGO)
     {
-      viewGO.localPosition = Vector3.zero;
-      viewGO.localRotation = Quaternion.identity;
+      viewGO.position = _locationGame.playerDeck.position;
+      viewGO.rotation = _locationGame.playerDeck.rotation;
     }
   }
 }

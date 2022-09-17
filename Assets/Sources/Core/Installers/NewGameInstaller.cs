@@ -62,10 +62,15 @@ namespace DrebotGS.Core
 
       void CreateLoadSystems(Contexts contexts)
       {
-        _gameSystems.Add(new CreateCardSystem(contexts));
+        _gameSystems.Add(new CreateHandSystem(contexts));
+        _gameSystems.Add(new FillHandWithCardsSystem(contexts));
 
         _gameSystems.Add(new LoadCardAssetSystem(contexts));
         _gameSystems.Add(new LoadCardTextureFromURLSystem(contexts));
+
+        _gameSystems.Add(new ReleaseFirstStackCardsSystem(contexts));
+
+        _gameSystems.Add(new CalculateCardPositionSystem(contexts));
 
         // TearDown
         _gameSystems.Add(new ReleaseAddressablesAssetsSystem(contexts));

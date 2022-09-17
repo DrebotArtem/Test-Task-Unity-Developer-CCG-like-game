@@ -17,3 +17,4 @@ MonoBehaviour:
   AssetsCatalogue: {fileID: 11400000, guid: 4ff0b89524cb4e6428ec1273e6714fec, type: 2}
   GameConfig: {fileID: 11400000, guid: 7297b443f43691147a26dccbae186f1b, type: 2}
   PlayerConfig: {fileID: 11400000, guid: 895e35d4cf2ddd844bba902302ed01e9, type: 2}
+  CardConfig: {fileID: 11400000, guid: 083269a5293b8254fb03d461cf7b6dda, type: 2}

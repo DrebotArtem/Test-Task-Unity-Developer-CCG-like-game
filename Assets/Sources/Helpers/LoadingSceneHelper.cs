@@ -70,7 +70,7 @@ namespace DrebotGS
     {
       var loadingOperations = new Queue<ILoadingOperation>();
       loadingOperations.Enqueue(new LoadSceneOperation(_gameScenesCatalogue.NewGameScene));
-      _contexts.gameState.CreateLoadingProvider(_standardLoadingScreenProvider, loadingOperations, false);
+      _contexts.gameState.CreateLoadingProvider(_standardLoadingScreenProvider, loadingOperations);
     }
   }
 }

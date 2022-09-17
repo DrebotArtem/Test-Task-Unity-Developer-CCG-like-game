@@ -11,5 +11,8 @@ public sealed class GameEventSystems : Feature {
     public GameEventSystems(Contexts contexts) {
         Add(new CardTexture2DEventSystem(contexts)); // priority: 0
         Add(new GameDestroyedEventSystem(contexts)); // priority: 0
+        Add(new PositionEventSystem(contexts)); // priority: 0
+        Add(new ReleaseCardEventSystem(contexts)); // priority: 0
+        Add(new TranslationEventSystem(contexts)); // priority: 0
     }
 }
