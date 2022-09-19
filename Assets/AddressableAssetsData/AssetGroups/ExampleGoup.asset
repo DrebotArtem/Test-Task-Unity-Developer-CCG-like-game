@@ -17,7 +17,7 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 4820a6a27753c7c448c68c9a509e672b
   m_SerializeEntries:
-  - m_GUID: 6953559eeffd1334fae29d42b739c7b5
+  - m_GUID: 57a6258b2c357274ab9ef51997e50935
     m_Address: Card
     m_ReadOnly: 0
     m_SerializedLabels: []
