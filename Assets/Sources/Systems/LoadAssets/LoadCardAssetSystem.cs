@@ -9,8 +9,9 @@ namespace DrebotGS.Systems
 {
   public class LoadCardAssetSystem : ReactiveSystem<GameEntity>
   {
-    ILoadService _viewService;
-    LocationGame _locationGame;
+    // Injects
+    private ILoadService _viewService;
+    private LocationGame _locationGame;
 
     [Inject]
     public void Inject(ILoadService viewService, LocationGame locationGame)
@@ -19,11 +20,6 @@ namespace DrebotGS.Systems
       _locationGame = locationGame;
     }
 
-    [Inject]
-    public void Inject(ILoadService viewService)
-    {
-      _viewService = viewService;
-    }
     public LoadCardAssetSystem(Contexts contexts) : base(contexts.game)
     {
     }
@@ -32,7 +28,7 @@ namespace DrebotGS.Systems
         => context.CreateCollector(GameMatcher.Asset);
 
     protected override bool Filter(GameEntity entity)
-        => entity.isAsset && entity.isCard && entity.hasNameID && !entity.hasView;
+        => entity.isAsset && entity.isCard && entity.hasAssetName && !entity.hasView;
 
     protected override void Execute(List<GameEntity> entities)
     {
@@ -44,7 +40,7 @@ namespace DrebotGS.Systems
 
     private async void InstantiateAsset(GameEntity entity)
     {
-      var viewGO = await _viewService.LoadAsset<Transform>(entity, entity.nameID.value);
+      var viewGO = await _viewService.LoadAsset<Transform>(entity, entity.assetName.value);
       if (entity.isEnabled == false || viewGO == null)
         return;
 

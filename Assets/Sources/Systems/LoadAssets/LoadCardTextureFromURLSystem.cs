@@ -1,6 +1,7 @@
 using DrebotGS.Config;
 using Entitas;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -8,8 +9,11 @@ using Zenject;
 
 namespace DrebotGS.Systems
 {
-  public class LoadCardTextureFromURLSystem : ReactiveSystem<GameEntity>
+  public class LoadCardTextureFromURLSystem : ReactiveSystem<GameEntity>, ITearDownSystem
   {
+    private readonly CancellationTokenSource _cts;
+
+    // Injects
     private CardConfig _cardConfig;
 
     [Inject]
@@ -20,6 +24,7 @@ namespace DrebotGS.Systems
 
     public LoadCardTextureFromURLSystem(Contexts contexts) : base(contexts.game)
     {
+      _cts = new CancellationTokenSource();
     }
 
     protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
@@ -40,7 +45,8 @@ namespace DrebotGS.Systems
     {
       entity.AddStatusLoadingCardTexture2D(StatusLoading.Loading);
       var texture = await LoadTextureFromURL(_cardConfig.CardImageURL);
-      if (!entity.isEnabled) return;
+      if (_cts.Token.IsCancellationRequested) return;
+
       if (texture == null)
       {
         entity.ReplaceStatusLoadingCardTexture2D(StatusLoading.FailLoaded);
@@ -68,6 +74,11 @@ namespace DrebotGS.Systems
       {
         return DownloadHandlerTexture.GetContent(www);
       }
+    }
+
+    public void TearDown()
+    {
+      _cts.Cancel();
     }
   }
 }

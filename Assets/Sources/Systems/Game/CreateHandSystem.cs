@@ -8,7 +8,8 @@ namespace DrebotGS.Systems
   public class CreateHandSystem : IInitializeSystem
   {
     private readonly Contexts _contexts;
-    LocationGame _locationGame;
+    // Injects
+    private LocationGame _locationGame;
 
     [Inject]
     public void Inject(LocationGame locationGame)
@@ -30,6 +31,7 @@ namespace DrebotGS.Systems
     {
       GameEntity entity = _contexts.game.CreateEntity();
       entity.isPlayerHand = true;
+      entity.AddPlayerId(0);
       entity.AddMaxCardsInHand(10);
       entity.AddCurrentCardsInHand(0);
       entity.AddHandTransform(_locationGame.playerHand);

@@ -8,18 +8,42 @@
 //------------------------------------------------------------------------------
 public static class TimerComponentsLookup {
 
-    public const int Destroyed = 0;
-    public const int TimerDestroyedListener = 1;
+    public const int AttackTimer = 0;
+    public const int CostTimer = 1;
+    public const int Destroyed = 2;
+    public const int DestroyWhenTimerExpires = 3;
+    public const int EntitiesReference = 4;
+    public const int EntityReference = 5;
+    public const int HealthTimer = 6;
+    public const int Timer = 7;
+    public const int TimerDestroyedListener = 8;
+    public const int TimerRunning = 9;
 
-    public const int TotalComponents = 2;
+    public const int TotalComponents = 10;
 
     public static readonly string[] componentNames = {
+        "AttackTimer",
+        "CostTimer",
         "Destroyed",
-        "TimerDestroyedListener"
+        "DestroyWhenTimerExpires",
+        "EntitiesReference",
+        "EntityReference",
+        "HealthTimer",
+        "Timer",
+        "TimerDestroyedListener",
+        "TimerRunning"
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(AttackTimerComponent),
+        typeof(CostTimerComponent),
         typeof(DestroyedComponent),
-        typeof(TimerDestroyedListenerComponent)
+        typeof(DestroyWhenTimerExpiresComponent),
+        typeof(EntitiesReferenceComponent),
+        typeof(EntityReferenceComponent),
+        typeof(HealthTimerComponent),
+        typeof(TimerComponent),
+        typeof(TimerDestroyedListenerComponent),
+        typeof(TimerRunningComponent)
     };
 }

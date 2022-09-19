@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 7933900839440837037}
   - component: {fileID: 1536919669159950524}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: Glow Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5538,7 +5538,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4200348747783288942
 Transform:
   m_ObjectHideFlags: 0
@@ -5553,7 +5553,7 @@ Transform:
   m_Children:
   - {fileID: 1235333880866349468}
   m_Father: {fileID: 6073609427965806569}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &3846717785104866149
 GameObject:
@@ -5956,7 +5956,7 @@ RectTransform:
   - {fileID: 1924171759260538525}
   - {fileID: 6073609427105419109}
   m_Father: {fileID: 6073609427965806569}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6263,8 +6263,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6472266750014921464}
-  - {fileID: 4200348747783288942}
   - {fileID: 6073609426277802032}
+  - {fileID: 4200348747783288942}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6280,7 +6280,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ba911bb562b91d4a833b9d2a2527a03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardImage: {fileID: 6073609426451556162}
   animationCurve:
     serializedVersion: 2
     m_Curve:
@@ -6323,6 +6322,13 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  canvas: {fileID: 6073609426277802037}
+  cardImage: {fileID: 6073609426451556162}
+  attackValue: {fileID: 3171612747437163126}
+  healthValue: {fileID: 5190465154374582985}
+  costValue: {fileID: 7796724886406688492}
+  glow: {fileID: 3824710090660495321}
+  glowParticleSystem: {fileID: 1536919669159950524}
 --- !u!1 &8363344848116691676
 GameObject:
   m_ObjectHideFlags: 0

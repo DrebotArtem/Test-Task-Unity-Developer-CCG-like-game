@@ -18,7 +18,6 @@ public class AppInstaller : MonoInstaller
 
   public override void Start()
   {
-    // Just example load Intro scene
     _loadingSceneHelper.LoadIntroScene();
   }
 }

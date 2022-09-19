@@ -13,26 +13,19 @@ namespace DrebotGS.Core
     //Injects
     private DiContainer _diContainer;
     private Contexts _contexts;
-    private LoadingSceneHelper _loadingSceneHelper;
 
     [Inject]
     public void Inject(
       DiContainer diContainer,
-      Contexts contexts,
-      LoadingSceneHelper loadingSceneHelper)
+      Contexts contexts)
     {
       _diContainer = diContainer;
       _contexts = contexts;
-      _loadingSceneHelper = loadingSceneHelper;
     }
 
     public override void InstallBindings()
     {
-      _diContainer.BindInterfacesAndSelfTo<LocationGame>().FromInstance(LocationGame).AsSingle();
-    }
-
-    public override void Start()
-    {
+      _diContainer.Bind<LocationGame>().FromInstance(LocationGame).AsSingle();
     }
 
     private void OnEnable()
@@ -64,13 +57,24 @@ namespace DrebotGS.Core
       {
         _gameSystems.Add(new CreateHandSystem(contexts));
         _gameSystems.Add(new FillHandWithCardsSystem(contexts));
+        _gameSystems.Add(new CreateUpdaterParametersOfCardsSystem(contexts));
 
+        _gameSystems.Add(new TimerSystem(contexts));
+        _gameSystems.Add(new AttackTimerSystem(contexts));
+        _gameSystems.Add(new HealthTimerSystem(contexts));
+        _gameSystems.Add(new CostTimerSystem(contexts));
+        
         _gameSystems.Add(new LoadCardAssetSystem(contexts));
         _gameSystems.Add(new LoadCardTextureFromURLSystem(contexts));
 
         _gameSystems.Add(new ReleaseFirstStackCardsSystem(contexts));
 
+        _gameSystems.Add(new DestroyCardWithLowHealthSystem(contexts));
+
+        _gameSystems.Add(new UpdateCurrentCardsSystem(contexts));
         _gameSystems.Add(new CalculateCardPositionSystem(contexts));
+
+        _gameSystems.Add(new UpdateCardParameterSystem(contexts));
 
         // TearDown
         _gameSystems.Add(new ReleaseAddressablesAssetsSystem(contexts));
@@ -81,6 +85,7 @@ namespace DrebotGS.Core
 
         // CleanupSystem
         _gameSystems.Add(new DestroyDestroyedGameSystem(contexts));
+        _gameSystems.Add(new DestroyDestroyedTimerSystem(contexts));
       }
     }
 

@@ -9,10 +9,15 @@
 public sealed class GameEventSystems : Feature {
 
     public GameEventSystems(Contexts contexts) {
+        Add(new AttackEventSystem(contexts)); // priority: 0
+        Add(new CardIndexEventSystem(contexts)); // priority: 0
         Add(new CardTexture2DEventSystem(contexts)); // priority: 0
+        Add(new CostEventSystem(contexts)); // priority: 0
         Add(new GameDestroyedEventSystem(contexts)); // priority: 0
+        Add(new HealthEventSystem(contexts)); // priority: 0
         Add(new PositionEventSystem(contexts)); // priority: 0
         Add(new ReleaseCardEventSystem(contexts)); // priority: 0
+        Add(new RotationEventSystem(contexts)); // priority: 0
         Add(new TranslationEventSystem(contexts)); // priority: 0
     }
 }

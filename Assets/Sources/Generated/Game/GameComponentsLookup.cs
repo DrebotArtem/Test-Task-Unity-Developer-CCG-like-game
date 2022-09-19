@@ -9,83 +9,122 @@
 public static class GameComponentsLookup {
 
     public const int Asset = 0;
-    public const int Card = 1;
-    public const int CardTexture2D = 2;
-    public const int CardTexture2DListener = 3;
-    public const int CurrentCardsInHand = 4;
-    public const int Destroyed = 5;
-    public const int FirstStackCard = 6;
-    public const int GameDestroyedListener = 7;
-    public const int HandTransform = 8;
-    public const int LoadAsync = 9;
-    public const int MaxCardsInHand = 10;
-    public const int NameID = 11;
-    public const int PlayerHand = 12;
-    public const int PlayerHandEntityReference = 13;
-    public const int PlayerIndex = 14;
-    public const int Position = 15;
-    public const int PositionInHand = 16;
-    public const int PositionListener = 17;
-    public const int ReleaseCard = 18;
-    public const int ReleaseCardListener = 19;
-    public const int StatusLoadingCardTexture2D = 20;
-    public const int Translation = 21;
-    public const int TranslationListener = 22;
-    public const int View = 23;
+    public const int AssetName = 1;
+    public const int Attack = 2;
+    public const int AttackListener = 3;
+    public const int Card = 4;
+    public const int CardIndex = 5;
+    public const int CardIndexListener = 6;
+    public const int CardTexture2D = 7;
+    public const int CardTexture2DListener = 8;
+    public const int Cost = 9;
+    public const int CostListener = 10;
+    public const int CurrentCardsInHand = 11;
+    public const int Destroyed = 12;
+    public const int FirstStackCard = 13;
+    public const int GameDestroyedListener = 14;
+    public const int HandTransform = 15;
+    public const int Health = 16;
+    public const int HealthListener = 17;
+    public const int LoadAsync = 18;
+    public const int MaxCardsInHand = 19;
+    public const int PlayerHand = 20;
+    public const int PlayerHandEntityReference = 21;
+    public const int PlayerId = 22;
+    public const int Position = 23;
+    public const int PositionListener = 24;
+    public const int ReleaseCard = 25;
+    public const int ReleaseCardListener = 26;
+    public const int Rotation = 27;
+    public const int RotationListener = 28;
+    public const int StatusLoadingCardTexture2D = 29;
+    public const int TimersQueue = 30;
+    public const int Translation = 31;
+    public const int TranslationListener = 32;
+    public const int UpdateCardParameter = 33;
+    public const int UpdaterParametersOfCards = 34;
+    public const int View = 35;
+    public const int WaitToDestoy = 36;
 
-    public const int TotalComponents = 24;
+    public const int TotalComponents = 37;
 
     public static readonly string[] componentNames = {
         "Asset",
+        "AssetName",
+        "Attack",
+        "AttackListener",
         "Card",
+        "CardIndex",
+        "CardIndexListener",
         "CardTexture2D",
         "CardTexture2DListener",
+        "Cost",
+        "CostListener",
         "CurrentCardsInHand",
         "Destroyed",
         "FirstStackCard",
         "GameDestroyedListener",
         "HandTransform",
+        "Health",
+        "HealthListener",
         "LoadAsync",
         "MaxCardsInHand",
-        "NameID",
         "PlayerHand",
         "PlayerHandEntityReference",
-        "PlayerIndex",
+        "PlayerId",
         "Position",
-        "PositionInHand",
         "PositionListener",
         "ReleaseCard",
         "ReleaseCardListener",
+        "Rotation",
+        "RotationListener",
         "StatusLoadingCardTexture2D",
+        "TimersQueue",
         "Translation",
         "TranslationListener",
-        "View"
+        "UpdateCardParameter",
+        "UpdaterParametersOfCards",
+        "View",
+        "WaitToDestoy"
     };
 
     public static readonly System.Type[] componentTypes = {
         typeof(AssetComponent),
+        typeof(AssetNameComponent),
+        typeof(AttackComponent),
+        typeof(AttackListenerComponent),
         typeof(CardComponent),
+        typeof(CardIndexComponent),
+        typeof(CardIndexListenerComponent),
         typeof(CardTexture2DComponent),
         typeof(CardTexture2DListenerComponent),
+        typeof(CostComponent),
+        typeof(CostListenerComponent),
         typeof(CurrentCardsInHandComponent),
         typeof(DestroyedComponent),
         typeof(FirstStackCardComponent),
         typeof(GameDestroyedListenerComponent),
         typeof(HandTransformComponent),
+        typeof(HealthComponent),
+        typeof(HealthListenerComponent),
         typeof(LoadAsyncComponent),
         typeof(MaxCardsInHandComponent),
-        typeof(NameIDComponent),
         typeof(PlayerHandComponent),
         typeof(PlayerHandEntityReferenceComponent),
-        typeof(PlayerIndexComponent),
+        typeof(PlayerIdComponent),
         typeof(PositionComponent),
-        typeof(PositionInHandComponent),
         typeof(PositionListenerComponent),
         typeof(ReleaseCardComponent),
         typeof(ReleaseCardListenerComponent),
+        typeof(RotationComponent),
+        typeof(RotationListenerComponent),
         typeof(StatusLoadingCardTexture2DComponent),
+        typeof(TimersQueueComponent),
         typeof(TranslationComponent),
         typeof(TranslationListenerComponent),
-        typeof(ViewComponent)
+        typeof(UpdateCardParameterComponent),
+        typeof(UpdaterParametersOfCardsComponent),
+        typeof(ViewComponent),
+        typeof(WaitToDestoyComponent)
     };
 }

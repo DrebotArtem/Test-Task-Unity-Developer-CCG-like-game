@@ -52,7 +52,7 @@ namespace DrebotGS.Core.Loading
 
     public void OnProgress(float progress)
     {
-      Debug.LogWarning("Progress loading: " + progress);
+      //Debug.LogWarning("Progress loading: " + progress);
     }
   }
 }

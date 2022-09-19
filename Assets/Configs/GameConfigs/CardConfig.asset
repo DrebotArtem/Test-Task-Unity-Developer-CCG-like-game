@@ -16,3 +16,11 @@ MonoBehaviour:
   AnimationDuration: 0.8
   OffsetPositionToShow: {x: 1, y: 0.5, z: 2.5}
   OffsetRotationToShow: {x: -15, y: 5, z: 20}
+  animationDurationToSelect: 0.01
+  animationDurationToUnselect: 0.3
+  offsetPositionToSelect: {x: 0, y: 0.35, z: 0.25}
+  setRotationToSelect: {x: -20, y: 0, z: 0}
+  Angle: 1.5
+  Distance: 0.4
+  FrontOffset: -0.01
+  startSortingOrder: 100
