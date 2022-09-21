@@ -22,8 +22,8 @@ namespace DrebotGS.Config
     public float animationDurationToSelect = 0.1f;
     [Range(0.01f, 6)]
     public float animationDurationToUnselect = 0.4f;
-    public Vector3 offsetPositionToSelect;
-    public Vector3 setRotationToSelect;
+    public Vector3 offsetPositionToPointerEnter;
+    public Vector3 setRotationToPointerEnter;
 
     [Header("Placement in hand")]
     public float Angle = 0.5f;

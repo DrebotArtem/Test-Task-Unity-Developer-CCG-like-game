@@ -182,6 +182,34 @@ public partial class @InputMasterControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""GamePlayContors"",
+            ""id"": ""8fb324df-529b-49c1-a12e-788c1c24f5f3"",
+            ""actions"": [
+                {
+                    ""name"": ""Point"",
+                    ""type"": ""Value"",
+                    ""id"": ""b01433ed-c434-41e2-bfdc-05af842be4ed"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""c71dd03d-d6b7-4de1-9236-cee3e6fe00d2"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Point"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -212,6 +240,9 @@ public partial class @InputMasterControls : IInputActionCollection2, IDisposable
         m_MainMenuControls_Navigate = m_MainMenuControls.FindAction("Navigate", throwIfNotFound: true);
         m_MainMenuControls_Point = m_MainMenuControls.FindAction("Point", throwIfNotFound: true);
         m_MainMenuControls_Click = m_MainMenuControls.FindAction("Click", throwIfNotFound: true);
+        // GamePlayContors
+        m_GamePlayContors = asset.FindActionMap("GamePlayContors", throwIfNotFound: true);
+        m_GamePlayContors_Point = m_GamePlayContors.FindAction("Point", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -357,6 +388,39 @@ public partial class @InputMasterControls : IInputActionCollection2, IDisposable
         }
     }
     public MainMenuControlsActions @MainMenuControls => new MainMenuControlsActions(this);
+
+    // GamePlayContors
+    private readonly InputActionMap m_GamePlayContors;
+    private IGamePlayContorsActions m_GamePlayContorsActionsCallbackInterface;
+    private readonly InputAction m_GamePlayContors_Point;
+    public struct GamePlayContorsActions
+    {
+        private @InputMasterControls m_Wrapper;
+        public GamePlayContorsActions(@InputMasterControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Point => m_Wrapper.m_GamePlayContors_Point;
+        public InputActionMap Get() { return m_Wrapper.m_GamePlayContors; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GamePlayContorsActions set) { return set.Get(); }
+        public void SetCallbacks(IGamePlayContorsActions instance)
+        {
+            if (m_Wrapper.m_GamePlayContorsActionsCallbackInterface != null)
+            {
+                @Point.started -= m_Wrapper.m_GamePlayContorsActionsCallbackInterface.OnPoint;
+                @Point.performed -= m_Wrapper.m_GamePlayContorsActionsCallbackInterface.OnPoint;
+                @Point.canceled -= m_Wrapper.m_GamePlayContorsActionsCallbackInterface.OnPoint;
+            }
+            m_Wrapper.m_GamePlayContorsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Point.started += instance.OnPoint;
+                @Point.performed += instance.OnPoint;
+                @Point.canceled += instance.OnPoint;
+            }
+        }
+    }
+    public GamePlayContorsActions @GamePlayContors => new GamePlayContorsActions(this);
     private int m_KeyboardandMouseSchemeIndex = -1;
     public InputControlScheme KeyboardandMouseScheme
     {
@@ -376,5 +440,9 @@ public partial class @InputMasterControls : IInputActionCollection2, IDisposable
         void OnNavigate(InputAction.CallbackContext context);
         void OnPoint(InputAction.CallbackContext context);
         void OnClick(InputAction.CallbackContext context);
+    }
+    public interface IGamePlayContorsActions
+    {
+        void OnPoint(InputAction.CallbackContext context);
     }
 }

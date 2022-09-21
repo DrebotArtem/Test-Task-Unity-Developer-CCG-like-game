@@ -14,3 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minCardsOnStart: 4
   maxCardsOnStart: 6
+  placementAreaLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  placementAreaBaseColor: {r: 0.69411767, g: 0.72156864, b: 0.7647059, a: 1}
+  placementAreaInteractiveColor: {r: 0.4570226, g: 0.9150943, b: 0.4437344, a: 1}
+  distanceBetweenCards: 1.2
+  offsetY: 0.3

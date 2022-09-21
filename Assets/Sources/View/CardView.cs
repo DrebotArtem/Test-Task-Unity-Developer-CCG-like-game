@@ -6,6 +6,9 @@ using Zenject;
 using DrebotGS.Config;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.HID;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace DrebotGS.Views
 {
@@ -15,8 +18,10 @@ namespace DrebotGS.Views
     ICardTexture2DListener,
     IReleaseCardListener,
     IGameDestroyedListener,
-    IPositionListener, 
-    IPointerEnterHandler, IPointerExitHandler
+    IPositionListener,
+    ITranslationListener,
+    IOnFieldListener,
+    IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler, IPointerDownHandler
   {
     public AnimationCurve animationCurve;
 
@@ -30,7 +35,7 @@ namespace DrebotGS.Views
     public ParticleSystemRenderer glowParticleSystem;
 
     private Sequence sequence;
-
+    private InputMasterControls _inputControl;
     // Injects
     private CardConfig _cardConfig;
 
@@ -39,30 +44,74 @@ namespace DrebotGS.Views
     {
       _cardConfig = cardConfig;
     }
-
+    private void InitInputControl()
+    {
+      _inputControl = new InputMasterControls();
+      _inputControl.Enable();
+    }
     public override void Link(IEntity entity)
     {
       base.Link(entity);
       AddListeners();
+      InitInputControl();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
-    {      
+    {
+      if (Entity.isSelected || Entity.isOnField || Entity.isReleaseCard) return;
       transform.DOKill();
-      transform.DOMove(Entity.position.value + _cardConfig.offsetPositionToSelect, _cardConfig.animationDurationToSelect);
-      transform.DORotate(_cardConfig.setRotationToSelect, _cardConfig.animationDurationToSelect);
+      transform.DOMove(Entity.position.value + _cardConfig.offsetPositionToPointerEnter, _cardConfig.animationDurationToSelect);
+      transform.DORotate(_cardConfig.setRotationToPointerEnter, _cardConfig.animationDurationToSelect);
       UpdateSortingOrdersForSelect();
-      glow.SetActive(true);
     }
     public void OnPointerExit(PointerEventData eventData)
-    {      
+    {
+      if (Entity.isSelected || Entity.isOnField || Entity.isReleaseCard) return;
+      ReturnCard();
+    }
+    public void OnPointerUp(PointerEventData eventData)
+    {
+      if (Entity.isOnField || Entity.isReleaseCard) return;
+      Entity.isSelected = false;
+      ReturnCard();
+    }
+    public void OnPointerDown(PointerEventData eventData)
+    {
+      if (Entity.isOnField || Entity.isReleaseCard) return;
+      Entity.isSelected = true;
+      glow.SetActive(true);
+    }
+
+    public void OnReleaseCard(GameEntity entity)
+    {
+      UpdateSortingOrdersByIndex();
+      UpdateAttackValue(entity.attack.value);
+      UpdateHealthValue(entity.health.value);
+      UpdateCostValue(entity.cost.value);
+
+      sequence = DOTween.Sequence();
+      sequence.Append(transform.DOMoveX(transform.position.x + _cardConfig.OffsetPositionToShow.x, _cardConfig.AnimationDuration).SetEase(animationCurve));
+      sequence.Join(transform.DOMoveY(transform.position.y + _cardConfig.OffsetPositionToShow.y, _cardConfig.AnimationDuration));
+      sequence.Join(transform.DOMoveZ(transform.position.z + _cardConfig.OffsetPositionToShow.z, _cardConfig.AnimationDuration));
+      sequence.Join(transform.DORotate(transform.rotation.eulerAngles + _cardConfig.OffsetRotationToShow, _cardConfig.AnimationDuration));
+
+      sequence.OnComplete(() =>
+      {
+        transform.DOMove(entity.position.value, 0.8f);
+        transform.DORotateQuaternion(entity.rotation.value, 0.8f).OnComplete(() =>
+          { Entity.isReleaseCard = false; });
+      });
+    }
+    public void OnTranslation(GameEntity entity, Vector3 value)
+    {
+      transform.position = value;
+    }
+    public void OnOnField(GameEntity entity)
+    {
       transform.DOKill();
       transform.DOMove(Entity.position.value, _cardConfig.animationDurationToUnselect);
       transform.DORotate(Entity.rotation.value.eulerAngles, _cardConfig.animationDurationToUnselect);
-      UpdateSortingOrdersByIndex();
-      glow.SetActive(false);
     }
-
     public void OnCardIndex(GameEntity entity, int value)
     {
       UpdateSortingOrdersByIndex();
@@ -83,25 +132,6 @@ namespace DrebotGS.Views
     {
       var sprite = Sprite.Create(value, new Rect(0f, 0f, value.width, value.height), new Vector2(0.5f, 0.5f), 50f, 0, SpriteMeshType.FullRect);
       cardImage.sprite = sprite;
-    }
-    public void OnReleaseCard(GameEntity entity)
-    {
-      UpdateSortingOrdersByIndex();
-      UpdateAttackValue(entity.attack.value);
-      UpdateHealthValue(entity.health.value);
-      UpdateCostValue(entity.cost.value);
-
-      sequence = DOTween.Sequence();
-      sequence.Append(transform.DOMoveX(transform.position.x + _cardConfig.OffsetPositionToShow.x, _cardConfig.AnimationDuration).SetEase(animationCurve));
-      sequence.Join(transform.DOMoveY(transform.position.y + _cardConfig.OffsetPositionToShow.y, _cardConfig.AnimationDuration));
-      sequence.Join(transform.DOMoveZ(transform.position.z + _cardConfig.OffsetPositionToShow.z, _cardConfig.AnimationDuration));
-      sequence.Join(transform.DORotate(transform.rotation.eulerAngles + _cardConfig.OffsetRotationToShow, _cardConfig.AnimationDuration));
-
-      sequence.OnComplete(() =>
-      {
-        transform.DOMove(entity.position.value, 0.8f);
-        transform.DORotateQuaternion(entity.rotation.value, 0.8f);
-      });
     }
     public void OnPosition(GameEntity entity, Vector3 value)
     {
@@ -146,6 +176,22 @@ namespace DrebotGS.Views
       transform.DOMove(Entity.position.value, 0.8f);
       transform.DORotateQuaternion(Entity.rotation.value, 0.8f);
     }
+    private void ReturnCard()
+    {
+      transform.DOKill();
+      transform.DOMove(Entity.position.value, _cardConfig.animationDurationToUnselect);
+      transform.DORotate(Entity.rotation.value.eulerAngles, _cardConfig.animationDurationToUnselect);
+      UpdateSortingOrdersByIndex();
+      glow.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+      if(sequence != null)
+        sequence.Kill();
+      transform.DOKill();
+    }
+
     private void AddListeners()
     {
       Entity.AddAttackListener(this);
@@ -156,6 +202,7 @@ namespace DrebotGS.Views
       Entity.AddReleaseCardListener(this);
       Entity.AddPositionListener(this);
       Entity.AddCardIndexListener(this);
+      Entity.AddTranslationListener(this);
     }
     private void RemoveListeners()
     {
@@ -167,15 +214,16 @@ namespace DrebotGS.Views
       Entity.RemoveReleaseCardListener(this);
       Entity.RemovePositionListener(this);
       Entity.RemoveCardIndexListener(this);
+      Entity.RemoveTranslationListener(this);
     }
     private void RemoveComponents()
     {
       Entity.RemoveView();
       Entity.isAsset = false;
     }
+
     private void OnDestroy()
     {
-      transform.DOKill();
       if (Entity == null) return;
       RemoveComponents();
       RemoveListeners();

@@ -15,6 +15,7 @@ public sealed class GameEventSystems : Feature {
         Add(new CostEventSystem(contexts)); // priority: 0
         Add(new GameDestroyedEventSystem(contexts)); // priority: 0
         Add(new HealthEventSystem(contexts)); // priority: 0
+        Add(new OnFieldEventSystem(contexts)); // priority: 0
         Add(new PositionEventSystem(contexts)); // priority: 0
         Add(new ReleaseCardEventSystem(contexts)); // priority: 0
         Add(new RotationEventSystem(contexts)); // priority: 0

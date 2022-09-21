@@ -160,6 +160,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "GamePlayContors",
+            "id": "8fb324df-529b-49c1-a12e-788c1c24f5f3",
+            "actions": [
+                {
+                    "name": "Point",
+                    "type": "Value",
+                    "id": "b01433ed-c434-41e2-bfdc-05af842be4ed",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c71dd03d-d6b7-4de1-9236-cee3e6fe00d2",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Point",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

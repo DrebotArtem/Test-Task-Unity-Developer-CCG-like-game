@@ -7,5 +7,6 @@ namespace DrebotGS.Mono
   {
     public Transform playerHand;
     public Transform playerDeck;
+    public Transform playerPlacementArea;
   }
 }

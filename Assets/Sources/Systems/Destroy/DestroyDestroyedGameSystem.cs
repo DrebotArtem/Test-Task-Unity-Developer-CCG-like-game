@@ -5,7 +5,6 @@ namespace DrebotGS.Systems
 {
   public class DestroyDestroyedGameSystem : ICleanupSystem
   {
-
     readonly IGroup<GameEntity> _group;
     readonly List<GameEntity> _buffer = new List<GameEntity>();
 
@@ -17,9 +16,7 @@ namespace DrebotGS.Systems
     public void Cleanup()
     {
       foreach (var e in _group.GetEntities(_buffer))
-      {
         e.Destroy();
-      }
     }
   }
 }

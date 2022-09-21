@@ -21,32 +21,42 @@ public static class GameComponentsLookup {
     public const int CostListener = 10;
     public const int CurrentCardsInHand = 11;
     public const int Destroyed = 12;
-    public const int FirstStackCard = 13;
-    public const int GameDestroyedListener = 14;
-    public const int HandTransform = 15;
-    public const int Health = 16;
-    public const int HealthListener = 17;
-    public const int LoadAsync = 18;
-    public const int MaxCardsInHand = 19;
-    public const int PlayerHand = 20;
-    public const int PlayerHandEntityReference = 21;
-    public const int PlayerId = 22;
-    public const int Position = 23;
-    public const int PositionListener = 24;
-    public const int ReleaseCard = 25;
-    public const int ReleaseCardListener = 26;
-    public const int Rotation = 27;
-    public const int RotationListener = 28;
-    public const int StatusLoadingCardTexture2D = 29;
-    public const int TimersQueue = 30;
-    public const int Translation = 31;
-    public const int TranslationListener = 32;
-    public const int UpdateCardParameter = 33;
-    public const int UpdaterParametersOfCards = 34;
-    public const int View = 35;
-    public const int WaitToDestoy = 36;
+    public const int DropCards = 13;
+    public const int FirstStackCard = 14;
+    public const int GameDestroyedListener = 15;
+    public const int HandTransform = 16;
+    public const int Health = 17;
+    public const int HealthListener = 18;
+    public const int InHand = 19;
+    public const int LoadAsync = 20;
+    public const int Material = 21;
+    public const int MaxCardsInHand = 22;
+    public const int OnField = 23;
+    public const int OnFieldListener = 24;
+    public const int PlacementArea = 25;
+    public const int PlacementAreaInteracted = 26;
+    public const int PlayerHand = 27;
+    public const int PlayerHandEntityReference = 28;
+    public const int PlayerId = 29;
+    public const int Position = 30;
+    public const int PositionListener = 31;
+    public const int ReadyToDrop = 32;
+    public const int ReleaseCard = 33;
+    public const int ReleaseCardListener = 34;
+    public const int Rotation = 35;
+    public const int RotationListener = 36;
+    public const int Selected = 37;
+    public const int StatusLoadingCardTexture2D = 38;
+    public const int TimersQueue = 39;
+    public const int Transform = 40;
+    public const int Translation = 41;
+    public const int TranslationListener = 42;
+    public const int UpdateCardParameter = 43;
+    public const int UpdaterParametersOfCards = 44;
+    public const int View = 45;
+    public const int WaitToDestoy = 46;
 
-    public const int TotalComponents = 37;
+    public const int TotalComponents = 47;
 
     public static readonly string[] componentNames = {
         "Asset",
@@ -62,24 +72,34 @@ public static class GameComponentsLookup {
         "CostListener",
         "CurrentCardsInHand",
         "Destroyed",
+        "DropCards",
         "FirstStackCard",
         "GameDestroyedListener",
         "HandTransform",
         "Health",
         "HealthListener",
+        "InHand",
         "LoadAsync",
+        "Material",
         "MaxCardsInHand",
+        "OnField",
+        "OnFieldListener",
+        "PlacementArea",
+        "PlacementAreaInteracted",
         "PlayerHand",
         "PlayerHandEntityReference",
         "PlayerId",
         "Position",
         "PositionListener",
+        "ReadyToDrop",
         "ReleaseCard",
         "ReleaseCardListener",
         "Rotation",
         "RotationListener",
+        "Selected",
         "StatusLoadingCardTexture2D",
         "TimersQueue",
+        "Transform",
         "Translation",
         "TranslationListener",
         "UpdateCardParameter",
@@ -102,24 +122,34 @@ public static class GameComponentsLookup {
         typeof(CostListenerComponent),
         typeof(CurrentCardsInHandComponent),
         typeof(DestroyedComponent),
+        typeof(DropCardsComponent),
         typeof(FirstStackCardComponent),
         typeof(GameDestroyedListenerComponent),
         typeof(HandTransformComponent),
         typeof(HealthComponent),
         typeof(HealthListenerComponent),
+        typeof(InHandComponent),
         typeof(LoadAsyncComponent),
+        typeof(MaterialComponent),
         typeof(MaxCardsInHandComponent),
+        typeof(OnFieldComponent),
+        typeof(OnFieldListenerComponent),
+        typeof(PlacementAreaComponent),
+        typeof(PlacementAreaInteracted),
         typeof(PlayerHandComponent),
         typeof(PlayerHandEntityReferenceComponent),
         typeof(PlayerIdComponent),
         typeof(PositionComponent),
         typeof(PositionListenerComponent),
+        typeof(ReadyToDropComponent),
         typeof(ReleaseCardComponent),
         typeof(ReleaseCardListenerComponent),
         typeof(RotationComponent),
         typeof(RotationListenerComponent),
+        typeof(SelectedComponent),
         typeof(StatusLoadingCardTexture2DComponent),
         typeof(TimersQueueComponent),
+        typeof(TransformComponent),
         typeof(TranslationComponent),
         typeof(TranslationListenerComponent),
         typeof(UpdateCardParameterComponent),

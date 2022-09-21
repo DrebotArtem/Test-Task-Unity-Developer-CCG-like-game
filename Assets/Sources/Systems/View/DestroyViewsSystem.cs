@@ -16,9 +16,7 @@ namespace DrebotGS.Systems
     public void TearDown()
     {
       foreach (var item in _groupView.GetEntities(_bufferView))
-      {
         item.isDestroyed = true;
-      }
     }
   }
 }

@@ -20,9 +20,7 @@ namespace DrebotGS.Systems
       _locationGame = locationGame;
     }
 
-    public LoadCardAssetSystem(Contexts contexts) : base(contexts.game)
-    {
-    }
+    public LoadCardAssetSystem(Contexts contexts) : base(contexts.game) { }
 
     protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         => context.CreateCollector(GameMatcher.Asset);
@@ -40,13 +38,14 @@ namespace DrebotGS.Systems
 
     private async void InstantiateAsset(GameEntity entity)
     {
-      var viewGO = await _viewService.LoadAsset<Transform>(entity, entity.assetName.value);
-      if (entity.isEnabled == false || viewGO == null)
+      var entTransform = await _viewService.LoadAsset<Transform>(entity, entity.assetName.value);
+      if (entity.isEnabled == false || entTransform == null)
         return;
 
-      AddView(entity, viewGO);
-      SetParentHand(viewGO);
-      SetPoristionAndRotationDeck(viewGO);
+      SetParentHand(entTransform);
+      SetPoristionAndRotationDeck(entTransform);
+      entity.AddTransform(entTransform);
+      AddView(entity, entTransform);
     }
 
     private void AddView(GameEntity entity, Transform viewGO)
@@ -54,7 +53,7 @@ namespace DrebotGS.Systems
       var view = viewGO.GetComponent<IView>();
       view.Link(entity);
       entity.AddView(view);
-  }
+    }
 
     private void SetParentHand(Transform viewGO)
     {

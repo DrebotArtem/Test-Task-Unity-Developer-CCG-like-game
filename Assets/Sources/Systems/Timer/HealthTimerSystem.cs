@@ -6,11 +6,11 @@ namespace DrebotGS.Systems
 {
   public class HealthTimerSystem : ReactiveSystem<TimerEntity>
   {
-    private readonly Contexts _contexts;
+    private readonly TimerContext _context;
 
     public HealthTimerSystem(Contexts contexts) : base(contexts.timer)
     {
-      _contexts = contexts;
+      _context = contexts.timer;
     }
 
     protected override ICollector<TimerEntity> GetTrigger(IContext<TimerEntity> context)
@@ -44,7 +44,7 @@ namespace DrebotGS.Systems
             continue;
           }
 
-          _contexts.timer.CreateHealthTimer(entityModify, targetValue);
+          _context.CreateHealthTimer(entityModify, targetValue);
         }
       }
 

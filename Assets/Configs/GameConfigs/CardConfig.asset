@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28604fae5f17f204ca3fca634bdeab56, type: 3}
   m_Name: CardConfig
   m_EditorClassIdentifier: 
-  CardImageURL: https://picsum.photos/1000/1000
+  CardImageURL: https://picsum.photos/1024/750
   AnimationDuration: 0.8
   OffsetPositionToShow: {x: 1, y: 0.5, z: 2.5}
   OffsetRotationToShow: {x: -15, y: 5, z: 20}
   animationDurationToSelect: 0.01
   animationDurationToUnselect: 0.3
-  offsetPositionToSelect: {x: 0, y: 0.35, z: 0.25}
-  setRotationToSelect: {x: -20, y: 0, z: 0}
+  offsetPositionToPointerEnter: {x: 0, y: 0.45, z: 0.25}
+  setRotationToPointerEnter: {x: -20, y: 0, z: 0}
   Angle: 1.5
   Distance: 0.4
   FrontOffset: -0.01

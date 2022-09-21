@@ -9,7 +9,6 @@ namespace DrebotGS.Core
     public LocationGame LocationGame;
 
     private InjectableFeature _gameSystems;
-
     //Injects
     private DiContainer _diContainer;
     private Contexts _contexts;
@@ -55,9 +54,19 @@ namespace DrebotGS.Core
 
       void CreateLoadSystems(Contexts contexts)
       {
+        _gameSystems.Add(new CreatePlacementAreaSystem(contexts));
         _gameSystems.Add(new CreateHandSystem(contexts));
         _gameSystems.Add(new FillHandWithCardsSystem(contexts));
         _gameSystems.Add(new CreateUpdaterParametersOfCardsSystem(contexts));
+
+        //Execute-->
+        _gameSystems.Add(new UpdateTranslationSelectedCardSystem(contexts));
+        _gameSystems.Add(new PreparePlacementCardSystem(contexts));
+        //<--
+
+        _gameSystems.Add(new DropCardOnPlacementAreaSystem(contexts));
+        _gameSystems.Add(new PlacementCardSystem(contexts));
+        _gameSystems.Add(new PlacementAreaInteractSystem(contexts));
 
         _gameSystems.Add(new TimerSystem(contexts));
         _gameSystems.Add(new AttackTimerSystem(contexts));
@@ -72,8 +81,8 @@ namespace DrebotGS.Core
         _gameSystems.Add(new DestroyCardWithLowHealthSystem(contexts));
 
         _gameSystems.Add(new UpdateCurrentCardsSystem(contexts));
-        _gameSystems.Add(new CalculateCardPositionSystem(contexts));
-
+        _gameSystems.Add(new UpdateCardIndexSystem(contexts));
+        _gameSystems.Add(new CalculateCardPositionInHandSystem(contexts));
         _gameSystems.Add(new UpdateCardParameterSystem(contexts));
 
         // TearDown

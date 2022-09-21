@@ -1,22 +1,22 @@
 using Entitas;
 using System.Collections.Generic;
 
-public sealed class DestroyDestroyedTimerSystem : ICleanupSystem
+namespace DrebotGS.Systems
 {
-
+  public sealed class DestroyDestroyedTimerSystem : ICleanupSystem
+  {
     readonly IGroup<TimerEntity> _group;
     readonly List<TimerEntity> _buffer = new List<TimerEntity>();
 
     public DestroyDestroyedTimerSystem(Contexts contexts)
     {
-        _group = contexts.timer.GetGroup(TimerMatcher.Destroyed);
+      _group = contexts.timer.GetGroup(TimerMatcher.Destroyed);
     }
 
     public void Cleanup()
     {
-        foreach (var e in _group.GetEntities(_buffer))
-        {
-            e.Destroy();
-        }
+      foreach (var e in _group.GetEntities(_buffer))
+        e.Destroy();
     }
+  }
 }

@@ -1,13 +1,10 @@
 using Entitas;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace DrebotGS.Systems
 {
-    public class DestroyDestroyedGameStateSystem : ICleanupSystem
+  public class DestroyDestroyedGameStateSystem : ICleanupSystem
     {
-
         readonly IGroup<GameStateEntity> _group;
         readonly List<GameStateEntity> _buffer = new List<GameStateEntity>();
 
@@ -19,9 +16,7 @@ namespace DrebotGS.Systems
         public void Cleanup()
         {
             foreach (var e in _group.GetEntities(_buffer))
-            {
                 e.Destroy();
-            }
         }
     }
 }

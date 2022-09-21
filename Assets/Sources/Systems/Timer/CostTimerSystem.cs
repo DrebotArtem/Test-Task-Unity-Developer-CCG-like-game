@@ -6,11 +6,11 @@ namespace DrebotGS.Systems
 {
   public class CostTimerSystem : ReactiveSystem<TimerEntity>
   {
-    private readonly Contexts _contexts;
+    private readonly TimerContext _context;
 
     public CostTimerSystem(Contexts contexts) : base(contexts.timer)
     {
-      _contexts = contexts;
+      _context = contexts.timer;
     }
 
     protected override ICollector<TimerEntity> GetTrigger(IContext<TimerEntity> context)
@@ -44,7 +44,7 @@ namespace DrebotGS.Systems
             continue;
           }
 
-          _contexts.timer.CreateCostTimer(entityModify, targetValue);
+          _context.CreateCostTimer(entityModify, targetValue);
         }
       }
 

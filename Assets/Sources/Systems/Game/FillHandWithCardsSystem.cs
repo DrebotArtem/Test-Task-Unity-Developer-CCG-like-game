@@ -51,6 +51,7 @@ namespace DrebotGS.Systems
     {
       GameEntity entityCard = _contexts.game.CreateCard("Card");
 
+      entityCard.isInHand = true;
       entityCard.AddPlayerId(playerId);
       entityCard.AddCardIndex(cardIndex);
       entityCard.isFirstStackCard = true;
