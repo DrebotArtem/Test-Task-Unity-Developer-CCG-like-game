@@ -12,57 +12,59 @@ public static class GameComponentsLookup {
     public const int AssetName = 1;
     public const int Attack = 2;
     public const int AttackListener = 3;
-    public const int Card = 4;
-    public const int CardIndex = 5;
-    public const int CardIndexListener = 6;
-    public const int CardTexture2D = 7;
-    public const int CardTexture2DListener = 8;
-    public const int Cost = 9;
-    public const int CostListener = 10;
-    public const int CurrentCardsInHand = 11;
-    public const int Destroyed = 12;
-    public const int DropCards = 13;
-    public const int FirstStackCard = 14;
-    public const int GameDestroyedListener = 15;
-    public const int HandTransform = 16;
-    public const int Health = 17;
-    public const int HealthListener = 18;
-    public const int InHand = 19;
-    public const int LoadAsync = 20;
-    public const int Material = 21;
-    public const int MaxCardsInHand = 22;
-    public const int OnField = 23;
-    public const int OnFieldListener = 24;
-    public const int PlacementArea = 25;
-    public const int PlacementAreaInteracted = 26;
-    public const int PlayerHand = 27;
-    public const int PlayerHandEntityReference = 28;
-    public const int PlayerId = 29;
-    public const int Position = 30;
-    public const int PositionListener = 31;
-    public const int ReadyToDrop = 32;
-    public const int ReleaseCard = 33;
-    public const int ReleaseCardListener = 34;
-    public const int Rotation = 35;
-    public const int RotationListener = 36;
-    public const int Selected = 37;
-    public const int StatusLoadingCardTexture2D = 38;
-    public const int TimersQueue = 39;
-    public const int Transform = 40;
-    public const int Translation = 41;
-    public const int TranslationListener = 42;
-    public const int UpdateCardParameter = 43;
-    public const int UpdaterParametersOfCards = 44;
-    public const int View = 45;
-    public const int WaitToDestoy = 46;
+    public const int Camera = 4;
+    public const int Card = 5;
+    public const int CardIndex = 6;
+    public const int CardIndexListener = 7;
+    public const int CardTexture2D = 8;
+    public const int CardTexture2DListener = 9;
+    public const int Cost = 10;
+    public const int CostListener = 11;
+    public const int CurrentCardsInHand = 12;
+    public const int Destroyed = 13;
+    public const int DropCards = 14;
+    public const int FirstStackCard = 15;
+    public const int GameDestroyedListener = 16;
+    public const int HandTransform = 17;
+    public const int Health = 18;
+    public const int HealthListener = 19;
+    public const int InHand = 20;
+    public const int LoadAsync = 21;
+    public const int Material = 22;
+    public const int MaxCardsInHand = 23;
+    public const int OnField = 24;
+    public const int OnFieldListener = 25;
+    public const int PlacementArea = 26;
+    public const int PlacementAreaInteracted = 27;
+    public const int PlayerHand = 28;
+    public const int PlayerHandEntityReference = 29;
+    public const int PlayerId = 30;
+    public const int Position = 31;
+    public const int PositionListener = 32;
+    public const int ReadyToDrop = 33;
+    public const int ReleaseCard = 34;
+    public const int ReleaseCardListener = 35;
+    public const int Rotation = 36;
+    public const int RotationListener = 37;
+    public const int Selected = 38;
+    public const int StatusLoadingCardTexture2D = 39;
+    public const int TimersQueue = 40;
+    public const int Transform = 41;
+    public const int Translation = 42;
+    public const int TranslationListener = 43;
+    public const int UpdateCardParameter = 44;
+    public const int UpdaterParametersOfCards = 45;
+    public const int View = 46;
+    public const int WaitToDestoy = 47;
 
-    public const int TotalComponents = 47;
+    public const int TotalComponents = 48;
 
     public static readonly string[] componentNames = {
         "Asset",
         "AssetName",
         "Attack",
         "AttackListener",
+        "Camera",
         "Card",
         "CardIndex",
         "CardIndexListener",
@@ -113,6 +115,7 @@ public static class GameComponentsLookup {
         typeof(AssetNameComponent),
         typeof(AttackComponent),
         typeof(AttackListenerComponent),
+        typeof(CameraComponent),
         typeof(CardComponent),
         typeof(CardIndexComponent),
         typeof(CardIndexListenerComponent),

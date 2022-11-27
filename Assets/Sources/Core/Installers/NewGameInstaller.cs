@@ -55,6 +55,7 @@ namespace DrebotGS.Core
       void CreateLoadSystems(Contexts contexts)
       {
         _gameSystems.Add(new CreatePlacementAreaSystem(contexts));
+        _gameSystems.Add(new CreateCameraSystem(contexts));
         _gameSystems.Add(new CreateHandSystem(contexts));
         _gameSystems.Add(new FillHandWithCardsSystem(contexts));
         _gameSystems.Add(new CreateUpdaterParametersOfCardsSystem(contexts));
